@@ -16,8 +16,11 @@ class Markov {
     public $p21;
     public $p22;
     public $item;
+    public $flag;
     protected $initial;
     protected $final;
+    protected $shop_cart;
+
 
     /**
      *  Constructor $p
@@ -38,6 +41,7 @@ class Markov {
         $this->p21=0;
         $this->p22=0;
         $this->item=0;
+        $this->flag=0;
         $this->initial=array();
         $this->final=array();
         $this->shop_cart=array();
@@ -91,19 +95,20 @@ class Markov {
             return 2;
         }
     }
-    public function add_state()
+    public function add_state($f=0)
     {
+        $this->flag=$f;
     $s=$this->convert();
     if($this->n==0)
     {
         array_push($this->initial,$s);
     }
-        elseif($this->n>0 && $this->n<4)
+        elseif($this->n>0 && $this->flag==0)
         {
             array_push($this->initial,$s);
             array_push($this->final,$s);
         }
-        elseif($this->n==4)
+        elseif($this->flag==1)
         {
             array_push($this->final,$s);
         }
