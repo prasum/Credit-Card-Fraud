@@ -40,11 +40,34 @@ class Markov {
         $this->item=0;
         $this->initial=array();
         $this->final=array();
+        $this->shop_cart=array();
         for($i=0; $i<3; $i++)
         {
             $this->arr0[$i]=0;
             $this->arr1[$i]=0;
             $this->arr2[$i]=0;
+        }
+    }
+    public function get_transaction_no()
+    {
+        return $this->n;
+    }
+    public function get_item()
+    {
+        return $this->item;
+    }
+    public function insert_in_cart()
+    {
+      array_push($this->shop_cart,$this->item);
+    }
+    public function view_cart()
+    {
+        echo "Shopping list"."<br/>";
+        for($g=0; $g<count($this->shop_cart); $g++)
+        {
+            $c=$g+1;
+            echo "Item".$c."&nbsp;&nbsp".$this->shop_cart[$g];
+            echo "<br/>";
         }
     }
     public function add_item($p)
