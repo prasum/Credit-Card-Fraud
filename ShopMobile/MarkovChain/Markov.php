@@ -140,6 +140,17 @@ class Markov {
             $this->final = array_values($this->final);
 
         }
+        elseif($n==0)
+        {
+            unset($this->initial[$n]);
+            $this->initial = array_values($this->initial);
+        }
+        elseif($n==count($this->final)-1)
+        {
+            unset($this->final[$n]);
+            $this->final = array_values($this->final);
+        }
+
     }
 
     /**
