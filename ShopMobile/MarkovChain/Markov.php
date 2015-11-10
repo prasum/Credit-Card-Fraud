@@ -123,6 +123,24 @@ class Markov {
     {
         $this->item=$p;
     }
+    public function delete_item($o)
+    {
+        $key = array_search($o, $this->shop_cart);
+        $this->delete_state($key);
+        unset($this->shop_cart[$key]);
+        $this->shop_cart = array_values($this->shop_cart);
+    }
+    public function delete_state($n)
+    {
+        if($n!=0 && $n!=count($this->final)-1)
+        {
+            unset($this->initial[$n]);
+            $this->initial = array_values($this->initial);
+            unset($this->final[$n-1]);
+            $this->final = array_values($this->final);
+
+        }
+    }
 
     /**
      * Converts price to state
