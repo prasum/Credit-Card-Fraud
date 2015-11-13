@@ -1,4 +1,5 @@
 <?php
+session_start();
 $l=0;
  $mysqli=new mysqli('localhost','root','password','transaction_store');
 if (mysqli_connect_errno()) {
@@ -6,6 +7,8 @@ if (mysqli_connect_errno()) {
     exit();
 }
 $a=$mysqli->query("select * from object_store");
+$t=$a->fetch_assoc();
+$_SESSION['name']=$t['Email'];
 if($a->num_rows>0)
 {
 $l=1;
@@ -108,8 +111,8 @@ $l=1;
 
                      <div class="navbar-collapse collapse navbar-right">
                          <ul class="nav navbar-nav">
-                             <li><a href="#">Welcome&nbsp; <?php</a></li>
-
+                             <li><a href="#">Welcome&nbsp; <?php echo $_SESSION['name']; ?> </a></li>
+                             <li><a href="logout.php" class="ajax_right">Logout</a>
                         </ul>
 					 
                   </div><!-- /.navbar-collapse -->
@@ -486,7 +489,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -509,7 +512,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -532,7 +535,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -555,7 +558,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -578,7 +581,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -601,7 +604,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -624,7 +627,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -647,7 +650,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 
@@ -670,7 +673,7 @@ $l=1;
 
                 },function (data) {
                     if(data=='success') {
-                        var url = "http://localhost/MarkovChain/sapphire/product.html";
+                        var url = "http://localhost/MarkovChain/sapphire/product1.php";
                         $(location).attr('href', url);
                         return false;
 

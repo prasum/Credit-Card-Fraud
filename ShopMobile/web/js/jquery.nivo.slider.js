@@ -1,5 +1,5 @@
 /*
- * jQuery Nivo Slider v3.2
+ * jQuery Nivo Slider v3.1
  * http://nivo.dev7studios.com
  *
  * Copyright 2012, Dev7studios
@@ -74,7 +74,7 @@
         }
         
         // Set first background
-        var sliderImg = $('<img/>').addClass('nivo-main-image');
+        var sliderImg = $('<img class="nivo-main-image" src="#" />');
         sliderImg.attr('src', vars.currentImage.attr('src')).show();
         slider.append(sliderImg);
 
@@ -86,6 +86,7 @@
             $('.nivo-slice').remove();
             $('.nivo-box').remove();
         });
+
         //Create caption
         slider.append($('<div class="nivo-caption"></div>'));
         
@@ -107,7 +108,7 @@
             } else {
                 nivoCaption.stop().fadeOut(settings.animSpeed);
             }
-        }       
+        }
         
         //Process initial  caption
         processCaption(settings);
@@ -122,7 +123,7 @@
         if(settings.directionNav){
             slider.append('<div class="nivo-directionNav"><a class="nivo-prevNav">'+ settings.prevText +'</a><a class="nivo-nextNav">'+ settings.nextText +'</a></div>');
             
-            $(slider).on('click', 'a.nivo-prevNav', function(){
+            $('a.nivo-prevNav', slider).live('click', function(){
                 if(vars.running) { return false; }
                 clearInterval(timer);
                 timer = '';
@@ -130,7 +131,7 @@
                 nivoRun(slider, kids, settings, 'prev');
             });
             
-            $(slider).on('click', 'a.nivo-nextNav', function(){
+            $('a.nivo-nextNav', slider).live('click', function(){
                 if(vars.running) { return false; }
                 clearInterval(timer);
                 timer = '';
