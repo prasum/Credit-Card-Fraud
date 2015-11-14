@@ -390,8 +390,110 @@ class Markov {
 
             ksort($x);
             print_r($x);
+            $m_ind=array();
+            $maxi=array();
+            $indi=array();
+            $max = max($x);
+           /* $l = $this->get_keys_for_duplicate_values($x);
+            print_r($l); */
+
+            $k = array();
+
+           /* foreach ($a as $key => $value) {
+                if ($key === $max) {
+                    if (count($value) > 1) {
+                        foreach ($value as $m) {
+                            array_push($k, $m);
+                        }
+                    }
+                }
+                print_r($k);
+            } */
+            for($e=0; $e<count($x); $e++)
+            {
+            $o=$x[$e];
+                for($f=$e+1; $f<count($x); $f++)
+                {
+                    if($x[$f]==$o)
+                    {
+                        array_push($k, $e);
+                        array_push($k, $f);
+
+                    }
+                }
+            }
+            print_r($k);
+            if(count($k)=== 0)
+            {
+                $ind = array_search($max, $x);
+                if($ind==0)
+                {
+                    echo "low";
+                }
+                elseif($ind==1)
+                {
+                    echo "medium";
+                }
+                else{
+                    echo "high";
+                }
+            }
+            else
+            {
+                for($s=0; $s<count($k); $s++)
+                {
+                    $y=0;
+                    for($r=0; $r<3; $r++)
+                    {
+                        $var='p'.$r.$s;
+                        $var2=$this->{$var};
+                        if($y<$var2)
+                        {
+                            $y=$var2;
+                        }
+                    }
+                    array_push($maxi,$y);
+                    array_push($m_ind,$s);
+                }
+                $maxj = max($maxi);
+                $index=array_search($maxj,$maxi);
+                if($m_ind[$index]==0)
+                {
+                    echo "low";
+                }
+                elseif($m_ind[$index]==1)
+                {
+                    echo "medium";
+                }
+                else
+                {
+                    echo "high";
+                }
+
+            }
+
         }
     }
+    /*function get_keys_for_duplicate_values($my_arr, $clean = false) {
+        if ($clean) {
+            return array_unique($my_arr);
+        }
+
+        $dups = $new_arr = array();
+        foreach ($my_arr as $key => $val) {
+            if (!isset($new_arr[$val])) {
+                $new_arr[$val] = $key;
+            } else {
+                if (isset($dups[$val])) {
+                    $dups[$val][] = $key;
+                } else {
+                    $dups[$val] = array($key);
+                }
+            }
+        }
+        return $dups;
+    }
+    */
 }
 
 /*$m= new Markov(4);
