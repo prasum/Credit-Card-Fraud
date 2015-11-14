@@ -21,8 +21,24 @@ $e=unserialize($u['object']);
 $e->calculate_constants();
 $e->display_constants();
 $e->calculate_prob_state();
-$e->test_gauss();
+$r=$e->test_gauss();
 
+if($r=="low")
+{
+    echo "<br/><br/>";
+    echo "Less fraudulent";
+}
+
+elseif($r=="medium")
+{
+    echo "<br/><br/>";
+    echo "Less fraudulent";
+}
+elseif($r=="high")
+{
+    echo "<br/><br/>";
+    echo "Less fraudulent";
+}
 
 
 

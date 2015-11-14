@@ -13,6 +13,10 @@ if($a->num_rows>0)
 {
 $l=1;
 }
+if($l==0)
+{
+    header('location: main.php');
+}
 
 
 

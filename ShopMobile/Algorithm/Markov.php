@@ -428,14 +428,17 @@ class Markov {
                 $ind = array_search($max, $x);
                 if($ind==0)
                 {
-                    echo "low";
+                    $str="low";
+                    return $str;
                 }
                 elseif($ind==1)
                 {
-                    echo "medium";
+                    $str="medium";
+                    return $str;
                 }
                 else{
-                    echo "high";
+                    $str="high";
+                    return $str;
                 }
             }
             else
@@ -459,15 +462,18 @@ class Markov {
                 $index=array_search($maxj,$maxi);
                 if($m_ind[$index]==0)
                 {
-                    echo "low";
+                    $str="low";
+                    return $str;
                 }
                 elseif($m_ind[$index]==1)
                 {
-                    echo "medium";
+                    $str="medium";
+                    return $str;
                 }
                 else
                 {
-                    echo "high";
+                    $str="high";
+                    return $str;
                 }
 
             }
