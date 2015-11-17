@@ -1,19 +1,19 @@
 <?php
 session_start();
-$l=0;
+$r=$_SESSION['mail'];
  $mysqli=new mysqli('localhost','root','password','transaction_store');
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-$a=$mysqli->query("select * from object_store");
-$t=$a->fetch_assoc();
-$_SESSION['name']=$t['Email'];
+$a=$mysqli->query("select * from object_store WHERE Email='$r'");
+
 if($a->num_rows>0)
 {
-$l=1;
+    $t=$a->fetch_assoc();
+    $_SESSION['name']=$t['Email'];
 }
-if($l==0)
+else
 {
     header('location: main.php');
 }

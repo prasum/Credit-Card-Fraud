@@ -114,7 +114,10 @@ class Markov {
             echo "<br/>";
         }
     }
-
+    public function return_flag()
+    {
+        return $this->flag;
+    }
     /**
      * Add item for conversion
      * @param $p
@@ -238,19 +241,35 @@ class Markov {
             for($k=0; $k<3; $k++)
             {
                 $var='p0'.$k;
-                $this->{$var}=$this->arr0[$k]/array_sum($this->arr0);
+                if(array_sum($this->arr0)===0)
+                {
+                    $this->{$var}=0;
+                }
+                else {
+                    $this->{$var} = $this->arr0[$k] / array_sum($this->arr0);
+                }
 
             }
 
-            for($k=0; $k<3; $k++)
-            {
-                $var1='p1'.$k;
-                $this->{$var1}=$this->arr1[$k]/(($this->arr1[0])+($this->arr1[1])+($this->arr1[2]));
+            for($k=0; $k<3; $k++) {
+                $var1 = 'p1' . $k;
+                    if((($this->arr1[0]) + ($this->arr1[1]) + ($this->arr1[2]))===0)
+                    {
+                        $this->{$var1}=0;
+
+                }
+            else{
+                    $this->{$var1} = $this->arr1[$k] / (($this->arr1[0]) + ($this->arr1[1]) + ($this->arr1[2]));
+                }
             }
-            for($k=0; $k<3; $k++)
-            {
-                $var2='p2'.$k;
-                $this->{$var2}=$this->arr2[$k]/(($this->arr2[0])+($this->arr2[1])+($this->arr2[2]));
+
+            for($k=0; $k<3; $k++) {
+                $var2 = 'p2' . $k;
+                if ((($this->arr2[0]) + ($this->arr2[1]) + ($this->arr2[2])) === 0) {
+                    $this->{$var2} = 0;
+                } else {
+                    $this->{$var2} = $this->arr2[$k] / (($this->arr2[0]) + ($this->arr2[1]) + ($this->arr2[2]));
+                }
             }
         }
     $this->cal_done=1;
