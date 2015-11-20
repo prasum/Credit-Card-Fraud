@@ -66,6 +66,7 @@ if($_SESSION['pname']=="Microsoft")
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700' rel='stylesheet' type='text/css'/>
 	<link href='css/font-awesome.min.css' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+	 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
         body{
             background: #ffffff;
@@ -217,7 +218,7 @@ if($_SESSION['pname']=="Microsoft")
 							<li><span>Availability: </span>In Stock</li>
 						</ul>
 					<div class="price">
-						Price <span class="strike">$150.00</span> <strong><?php echo $_SESSION['pprice']; ?></strong>
+						Price  <i class="fa fa-inr"></i><span class="strike"><?php echo $_SESSION['pprice']+rand(0,1000);  ?> </span> <strong><?php echo $_SESSION['pprice']; ?></strong>
 					</div>
 					<!--
 						<span class="price-tax">Ex Tax: $400.00</span>

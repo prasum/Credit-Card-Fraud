@@ -37,7 +37,7 @@ elseif($r=="medium")
 elseif($r=="high")
 {
     echo "<br/><br/>";
-    echo "Less fraudulent";
+    echo "fraudulent";
 }
 
 
