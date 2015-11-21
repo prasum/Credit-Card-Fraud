@@ -24,6 +24,8 @@ for($i=0; $i<$qt; $i++)
     {
         $m=new Markov();
         $m->add_item($price);
+        $m->insert_in_cart();
+        $m->make_dict();
         $m->add_state();
         $mysqli->query("update object_store set object='".serialize($m)."'  where Email='$email' ");
     }
@@ -31,6 +33,8 @@ for($i=0; $i<$qt; $i++)
     {
         $d=unserialize($r['object']);
         $d->add_item($price);
+        $d->insert_in_cart();
+        $d->make_dict();
         $d->add_state();
         $mysqli->query("update object_store set object='".serialize($d)."'  where Email='$email' ");
     }

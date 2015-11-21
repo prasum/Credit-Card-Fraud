@@ -2,6 +2,7 @@
 session_start();
 if(!isset($_SESSION['name']))
 {
+    session_regenerate_id();
     header('location: main.php');
 }
 $t=false;

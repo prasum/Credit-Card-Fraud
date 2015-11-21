@@ -29,6 +29,7 @@ class Markov {
     protected $initial;
     protected $final;
     protected $shop_cart;
+    public $dict;
 
 
     /**
@@ -63,6 +64,7 @@ class Markov {
         $this->initial=array();
         $this->final=array();
         $this->shop_cart=array();
+        $this->dict=array();
         for($i=0; $i<3; $i++)
         {
             $this->arr0[$i]=0;
@@ -92,6 +94,10 @@ class Markov {
     {
         return $this->item;
     }
+    public function return_dict()
+    {
+        return $this->dict;
+    }
 
     /**
      * insert item in cart
@@ -112,6 +118,18 @@ class Markov {
             $c=$g+1;
             echo "Item".$c."&nbsp;&nbsp".$this->shop_cart[$g];
             echo "<br/>";
+        }
+    }
+   public function make_dict()
+    {
+        $this->dict=array_count_values($this->shop_cart);
+    }
+    public function parse_dict()
+    {
+        $m=$this->dict;
+        foreach($m as $key=>$value)
+        {
+            echo $key.":".$value;
         }
     }
     public function return_flag()
@@ -148,12 +166,13 @@ class Markov {
             unset($this->initial[$n]);
             $this->initial = array_values($this->initial);
         }
-       /* elseif($n==count($this->final)-1 && $this->flag==1)
+        elseif($this->flag==1)
         {
+		    $n=count($this->final)-1;
             unset($this->final[$n]);
             $this->final = array_values($this->final);
         }
-      */
+
     }
 
     /**

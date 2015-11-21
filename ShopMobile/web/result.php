@@ -7,6 +7,11 @@
  */
 session_start();
 require 'Algorithm/Markov.php';
+if(!isset($_SESSION['name']))
+{
+    session_regenerate_id();
+header('location: main.php');
+}
 $email=$_SESSION['name'];
 $name1=$_SESSION['pname'];
 $price=$_SESSION['pprice'];

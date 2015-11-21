@@ -10,6 +10,11 @@ ini_set('display_errors', true);
  
 session_start();
 require 'Algorithm/Markov.php';
+if(!isset($_SESSION['name']))
+{
+    session_regenerate_id();
+header('location: main.php');
+}
  $email=$_SESSION['name'];
 $mysqli=new mysqli('localhost','root','password','transaction_store');
 if (mysqli_connect_errno()) {
@@ -19,17 +24,18 @@ if (mysqli_connect_errno()) {
 $q = $mysqli->query("select * from object_store where Email='$email' ");
     if(($q->num_rows)>0) {
         $r = $q->fetch_assoc();
-		if($r['object']==='NULL')
-		break;
-		else
-		{
-        $d = unserialize($r['object']);
-		$e=$d->flag;
-        if ($e) {
-            $mysqli->query("delete object from object_store where Email='$email'");
+        if (!is_null($r['object'])) {
+
+
+            $d = unserialize($r['object']);
+            $e = $d->flag;
+            if ($e) {
+                $mysqli->query("delete object from object_store where Email='$email'");
+            }
+
         }
-		}
-		}
+    }
+
 
  
  unset($_SESSION['name']);
