@@ -31,7 +31,7 @@ $d=unserialize($r['object']);
     header('location: result.php');
 }  */
 array_push($l,$d);
-if(!is_null($d))
+if($d!=false)
 {
     $a=true;
 }
@@ -94,7 +94,7 @@ $sum=0;
 
                     <ul class="nav navbar-right cart">
                       <li class="dropdown">
-					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span> <?php if($a==true) { ?><?php echo $d->n;  ?> <?php } ?></span></a>
+					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span> <?php if($a==true) { ?><?php echo $d->n;  ?> <?php } ?><?php if($a==false) { ?><?php echo '0';  ?> <?php } ?></span></a>
 					<div class="cart-info dropdown-menu">
 						<table class="table">
 							<thead>
@@ -199,7 +199,7 @@ $sum=0;
                              <?php unset($a); ?>
 							</tbody>
 						  </table>
-						  <div class="checkout"><a href="cart.html" class="ajax_right">View Cart</a> | <a href="checkout.html" class="ajax_right">Checkout</a></div>
+						  <div class="checkout"><a href="logout.php" class="ajax_right">Logout</a></div>
 						</div>
 					</div> 
 			      </li>
