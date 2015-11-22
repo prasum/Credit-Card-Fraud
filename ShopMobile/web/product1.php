@@ -51,6 +51,27 @@ if($_SESSION['pname']=="Microsoft")
 {
     $d=true;
 }
+$email=$_SESSION['name'];
+$l=array();
+$q=$mysqli->query("select object from object_store where Email='$email' ");
+$r=$q->fetch_assoc();
+
+$d=unserialize($r['object']);
+/*if($d->return_flag()==1) {
+   header('location: result.php');
+}  */
+array_push($l,$d);
+if(!is_null($d))
+{
+    $a=true;
+}
+else
+{
+    $a=false;
+}
+$b=0;
+$p=array();
+$sum=0;
 
 ?>
 
@@ -92,7 +113,7 @@ if($_SESSION['pname']=="Microsoft")
         }
     </style>
     <!--script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script-->	
-	<title>Sapphire</title>
+	<title>ShopMobile</title>
 </head>
 <body>
 <div class="page-container">
@@ -124,42 +145,116 @@ if($_SESSION['pname']=="Microsoft")
 
                     <ul class="nav navbar-right cart">
                       <li class="dropdown">
-					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span>5</span></a>
+					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span><?php if($a==true) { ?><?php echo $d->n;  ?> <?php } ?></span></a>
 					<div class="cart-info dropdown-menu">
 						<table class="table">
 							<thead>
 							</thead>
 							<tbody>
+                            <?php if($a===false) {  ?>
+                                <tr> <td> </td></td></tr>
+
+
+                            <?php } ?>
+                            <?php if($a===true) { $p=$d->dict; ?>
+                            <?php foreach($p as $key=>$value) { ?>
 								<tr>
-									<td class="image"><img alt="IMAGE" class="img-responsive" src="products/dress33.jpg"></td>
-									<td class="name"><a href="project.html">Black Dress</a></td>
-									<td class="quantity">x&nbsp;3</td>
-									<td class="total">$130.00</td>
-									<td class="remove"><img src="image/remove-small.png" alt="Remove" title="Remove"></td>											
-								</tr>
-								<tr>
-									<td class="image"><img alt="IMAGE" class="img-responsive" src="products/dress11.jpg"></td>
-									<td class="name"><a href="project.html">Blue Dress</a></td>
-									<td class="quantity">x&nbsp;3</td>
-									<td class="total">$230.00</td>
-									<td class="remove"><img src="image/remove-small.png" alt="Remove" title="Remove"></td>											
-								</tr>
+                                    <?php if($key=="7000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob1.png"></td>
+
+                                        <td class="name"><a href="project.html">Samsung</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="3000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob2.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Karbonn</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="45000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob3.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Iphone</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="2500") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob4.png"></td>
+
+                                        <td class="name"><a href="project.html">Micromax</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="35000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob5.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Xolo</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="11000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob6.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Motorola</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="15000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob7.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Asus</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="6000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob8.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Huawei</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+                                    <?php if($key=="12000") { ?>
+                                        <td class="image"><img alt="IMAGE" class="img-responsive" src="products/mob9.jpg"></td>
+
+                                        <td class="name"><a href="project.html">Microsoft</a></td>
+                                        <?php $b=$key; ?>
+                                    <?php } ?>
+
+                                    <td class="quantity">x&nbsp;<?php echo $value; ?></td>
+                                    <td class="total"><i class="fa fa-inr"></i><?php echo ((int)$b)*$value;    ?></td>
+                                    <!--	<td class="remove"><img src="image/remove-small.png" alt="Remove" title="Remove"></td>	-->
+
+
+
+
+
+                            </tr>
+                                    <?php  $sum= $sum+((int)$b)*$value; ?>
+                                <?php } ?>
+                            <?php } ?>
 							</tbody>									
 						</table>
 						<div class="cart-total">
 						  <table>
 							 <tbody>
-								<tr>
-								  <td><b>Sub-Total:</b></td>
-								  <td>$400.00</td>
-								</tr>
-								<tr>
-								  <td><b>Total:</b></td>
-								  <td>$400.00</td>
-								</tr>
+                             <?php if($a) { ?>
+                                 <tr>
+                                     <td><b>Sub-Total:</b></td>
+                                     <td><i class="fa fa-inr"></i><?php echo $sum; ?></td>
+                                 </tr>
+                                 <tr>
+                                     <td><b>Total:</b></td>
+                                     <td><i class="fa fa-inr"></i><?php echo $sum; ?></td>
+                                 </tr>
+                             <?php } ?>
+                             <?php if(!$a) { ?>
+                                 <tr>
+                                     <td><b>Sub-Total:</b></td>
+                                     <td><i class="fa fa-inr"></i>0</td>
+                                 </tr>
+                                 <tr>
+                                     <td><b>Total:</b></td>
+                                     <td><i class="fa fa-inr"></i>0</td>
+                                 </tr>
+                             <?php } ?>
+                             <?php unset($a); ?>
 							</tbody>
 						  </table>
-						  <div class="checkout"><a href="cart.html" class="ajax_right">View Cart</a> | <a href="checkout.html" class="ajax_right">Checkout</a></div>
+						  <div class="checkout"><a href="cart.html" class="ajax_right">View Cart</a> | <a href="logout.php" class="ajax_right">Logout</a></div>
 						</div>
 					</div> 
 			      </li>
