@@ -27,6 +27,9 @@ $q=$mysqli->query("select object from object_store where Email='$email' ");
 $r=$q->fetch_assoc();
 
 $d=unserialize($r['object']);
+ /*if($d->return_flag()==1) {
+    header('location: result.php');
+}  */
 array_push($l,$d);
 if(!is_null($d))
 {
@@ -91,12 +94,18 @@ $sum=0;
 
                     <ul class="nav navbar-right cart">
                       <li class="dropdown">
-					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span> <?php if($a===true) { ?><?php echo $d->n;  ?> <?php } ?></span></a>
+					<a href="cart.html" class="dropdown-toggle" data-toggle="dropdown"><span> <?php if($a==true) { ?><?php echo $d->n;  ?> <?php } ?></span></a>
 					<div class="cart-info dropdown-menu">
 						<table class="table">
 							<thead>
 							</thead>
-							<tbody>  <?php if($a===true) { $p=$d->dict; ?>
+							<tbody>
+                            <?php if($a===false) {  ?>
+                                <tr> <td> </td></td></tr>
+
+
+                            <?php } ?>
+                            <?php if($a===true) { $p=$d->dict; ?>
                             <?php foreach($p as $key=>$value) { ?>
 								<tr>
                                     <?php if($key=="7000") { ?>
@@ -161,11 +170,7 @@ $sum=0;
 								<?php  $sum= $sum+((int)$b)*$value; ?>
                             <?php } ?>
                             <?php } ?>
-                            <?php if($a===false) {  ?>
-                            <tr> <td> </td></td></tr>
 
-
-                            <?php  } ?>
 							</tbody>									
 						</table>
 						<div class="cart-total">

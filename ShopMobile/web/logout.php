@@ -21,16 +21,16 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-$q = $mysqli->query("select * from object_store where Email='$email' ");
+$q = $mysqli->query("select object from object_store where Email='$email' ");
     if(($q->num_rows)>0) {
         $r = $q->fetch_assoc();
         if (!is_null($r['object'])) {
 
 
             $d = unserialize($r['object']);
-            $e = $d->flag;
-            if ($e) {
-                $mysqli->query("delete object from object_store where Email='$email'");
+            $e = $d->return_flag();
+            if ($e==1) {
+                $mysqli->query("update object_store set object=NULL  where Email='$email'");
             }
 
         }
