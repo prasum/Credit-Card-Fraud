@@ -393,7 +393,13 @@ class Markov {
 
             for ($i = $col + 1; $i < $N; $i++)
             {
-                $tmp = $A[$i][$col] / $A[$col][$col];
+                if($A[$col][$col]==0)
+                {
+                    $tmp=0;
+                }
+                else {
+                    $tmp = $A[$i][$col] / $A[$col][$col];
+                }
                 for ($j = $col + 1; $j < $N; $j++)
                 {
                     $A[$i][$j] -= $tmp * $A[$col][$j];
@@ -403,14 +409,17 @@ class Markov {
             }
         }
         $x = array();
-        for ($col = $N - 1; $col >= 0; $col--)
-        {
+        for ($col = $N - 1; $col >= 0; $col--) {
             $tmp = $b[$col];
-            for ($j = $N - 1; $j > $col; $j--)
-            {
+            for ($j = $N - 1; $j > $col; $j--) {
+
                 $tmp -= $x[$j] * $A[$col][$j];
             }
-            $x[$col] = $tmp / $A[$col][$col];
+            if ($A[$col][$col] == 0) {
+                $x[$col] = 0;
+            } else {
+                $x[$col] = $tmp / $A[$col][$col];
+            }
         }
         return $x;
     }
