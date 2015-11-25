@@ -7,7 +7,7 @@ ini_set('display_errors', true);
  * Date: 13-11-2015
  * Time: 05:49
  */
- 
+session_set_cookie_params(0);
 session_start();
 require 'Algorithm/Markov.php';
 if(!isset($_SESSION['name']))

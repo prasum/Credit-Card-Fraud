@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0);
 session_start();
 if(!isset($_SESSION['name']))
 {
@@ -435,6 +436,24 @@ $sum=0;
         </div>
     </div>
 </div>
+<div id="myModal2" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Failure</h4>
+            </div>
+            <div class="modal-body">
+                <p>The quantity entered is either 0 or invalid or blank</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-lg" id="login3" data-dismiss="modal"> Click Ok to Continue</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js'><\/script>")</script -->
@@ -480,8 +499,7 @@ jQuery(document).ready(function()
             }
             else
             {
-                var a=$('#qty').val();
-                alert(a);
+                $('#myModal2').modal('show');
                 return false;
             }
         });
@@ -503,8 +521,7 @@ jQuery(document).ready(function()
             }
             else
             {
-                var a=$('#qty').val();
-                alert(a);
+                $('#myModal2').modal('show');
                 return false;
             }
         });
