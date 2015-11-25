@@ -2,6 +2,7 @@
 
 error_reporting(-1);
 ini_set('display_errors', true);
+session_set_cookie_params(0);
 session_start();
 require 'Algorithm/Markov.php';
 $r=$_SESSION['mail'];
@@ -23,13 +24,13 @@ else
 }
 $email=$_SESSION['name'];
 $l=array();
-$q=$mysqli->query("select object from object_store where Email='$email' ");
+$q=$mysqli->query("select * from object_store where Email='$email' ");
 $r=$q->fetch_assoc();
 
 $d=unserialize($r['object']);
- /*if($d->return_flag()==1) {
+ if($r['Fraudulent']==1) {
     header('location: result.php');
-}  */
+}
 array_push($l,$d);
 if($d!=false)
 {
@@ -366,8 +367,10 @@ $sum=0;
 				    <div class="name" id="motorola">
 				    <p id="moto">Motorola</p>
 				    </div>
+
 				    <div class="price">
 				    <p><i class="fa fa-inr" id="w">11000</i></p>
+
                         <p>   <button type="button" class="btn btn-primary btn-small" id="buy6">Buy</button> </p>
 				    </div>
 

@@ -5,7 +5,7 @@
  * Date: 13-11-2015
  * Time: 03:25
  */
-
+session_set_cookie_params(0);
 session_start();
 $name=$_POST['n'];
 
